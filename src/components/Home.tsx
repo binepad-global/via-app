@@ -180,7 +180,7 @@ export const Home: React.FC<HomeProps> = (props) => {
           Looks like there was a problem getting USB detection working. Right
           now, we only support{' '}
           <UsbErrorWebHIDLink
-            href="https://caniuse.com/?search=webhid"
+            href="https://developer.mozilla.org/en-US/docs/Web/API/WebHID_API"
             target="_blank"
           >
             browsers that have WebHID enabled

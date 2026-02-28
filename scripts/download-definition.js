@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
 const fs = require('fs');
-let url = 'https://www.caniusevia.com/keyboards.v2.json';
+let url = null; //'https://www.caniusevia.com/keyboards.v2.json'; // this URL is now dead
 
 let settings = {method: 'Get'};
 if (!fs.existsSync('public/definitions')) {

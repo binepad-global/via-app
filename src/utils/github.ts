@@ -15,13 +15,8 @@ function onMessage(evt: MessageEvent) {
   }
 }
 export async function authGithub() {
-  const isLocalhost = location.hostname === 'localhost';
-  const redirect_uri = isLocalhost
-    ? 'http://localhost:8080/github_oauth.html'
-    : 'https://usevia.app/github_oauth.html';
-  const client_id = isLocalhost
-    ? '4300c2892225537a065c'
-    : '257d3d5bb57e29d1ce06';
+  const redirect_uri = '/github_oauth.html';
+  const client_id = '0';
   window.addEventListener('message', onMessage);
   window.open(
     `https://github.com/login/oauth/authorize?response_type=code&client_id=${client_id}&scope=gist&redirect_uri=${redirect_uri}&state=${random_state}`,

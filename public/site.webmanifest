@@ -1,7 +1,7 @@
 {
-    "name": "VIA",
-	"short_name": "VIA",
-	"description": "VIA - Your keyboard's best friend",
+    "name": "Keybo",
+	"short_name": "Keybo",
+	"description": "Keybo - A VIA spinoff",
 	"start_url": ".",
     "icons": [
         {

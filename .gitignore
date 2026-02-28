@@ -6,3 +6,5 @@ node_modules
 public/definitions
 dist
 dist-ssr
+
+__*

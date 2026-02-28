@@ -31,10 +31,10 @@ const defaultStoreData = {
     showDesignTab: false,
     disableFastRemap: false,
     ShowSliderValuesMode: 'Slider Only' as const,
-    renderMode: '2D' as const,
+    renderMode: '3D' as const,
     themeMode: 'dark' as const,
     designDefinitionVersion: 'v3' as const,
-    themeName: 'OLIVIA_DARK',
+    themeName: 'BINEPAD',
     macroEditor: {
       smartOptimizeEnabled: true,
       recordDelaysEnabled: false,

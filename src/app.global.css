@@ -1,9 +1,5 @@
-/* This is a workaround to ← → missing in Google Fonts web font.
-Explicitly import the missing arrows.
-See https://stackoverflow.com/questions/40822458/styled-unicode-arrows-not-showing-up-with-google-fonts-web-font
- */
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans');
-@import url('https://fonts.googleapis.com/css?family=Fira+Sans&text=%E2%86%90|%E2%86%92');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 html,
 body {
@@ -17,7 +13,7 @@ body {
   position: relative;
   color: white;
   background-color: #232c39;
-  font-family: 'Fira Sans', Helvetica, Helvetica Neue, Arial, serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
   overflow: hidden;
   margin: 0;
@@ -25,7 +21,7 @@ body {
   user-select: none;
 }
 button {
-  font-family: 'Fira Sans', Helvetica, Helvetica Neue, Arial, serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   font-weight: 300;
 }
 h2 {
@@ -114,18 +110,6 @@ html[data-theme-mode='light'] {
   display: flex;
   flex-direction: column;
   height: 100%;
-}
-@font-face {
-  font-family: GothamRoundedBold;
-  src: url(/fonts/GothamRoundedBold_21016.ttf) format('opentype');
-}
-@font-face {
-  font-family: GothamRounded;
-  src: url(/fonts/GothamRoundedBook_21018.ttf) format('opentype');
-}
-@font-face {
-  font-family: Symbola;
-  src: url(/fonts/Symbola.ttf) format('opentype');
 }
 
 @keyframes border-glow {
