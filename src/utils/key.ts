@@ -76,7 +76,7 @@ export function getByteForCode(
     return byte;
   } else if (isLayerCode(code)) {
     return getByteForLayerCode(code, basicKeyToByte);
-  } else if (advancedStringToKeycode(code, basicKeyToByte) !== null) {
+  } else if (advancedStringToKeycode(code, basicKeyToByte) !== 0) {
     return advancedStringToKeycode(code, basicKeyToByte);
   }
   throw `Could not find byte for ${code}`;
@@ -263,7 +263,7 @@ export function keycodeInMaster(
   return (
     keycode in basicKeyToByte ||
     isLayerCode(keycode) ||
-    advancedStringToKeycode(keycode, basicKeyToByte) !== null
+    advancedStringToKeycode(keycode, basicKeyToByte) !== 0
   );
 }
 
@@ -334,6 +334,16 @@ export function getShortNameForKeycode(keycode: IKeycode, size = 100) {
     return shortenedName;
   }
   return name;
+}
+
+export function byteHasShortname(
+  byte: number,
+  basicKeyToByte: Record<string, number>,
+  byteToKey: Record<number, string>,
+) {
+  const keycode = getCodeForByte(byte, basicKeyToByte, byteToKey);
+  const basicKeycode = keycodesList.find(({code}) => code === keycode);
+  return basicKeycode?.shortName;
 }
 
 export function getOtherMenu(
@@ -841,12 +851,93 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
           shortName: 'NKRO',
           title: 'Toggle NKRO',
         },
+
+        // Add frequently used magic keys for GUI
+        {
+          name: 'Swap Ctrl GUI',
+          code: 'MAGIC_SWAP_CTL_GUI',
+          shortName: 'CG Swap',
+          title: 'Swap Ctrl and GUI',
+        },
+        {
+          name: 'Unswap Ctrl GUI',
+          code: 'MAGIC_UNSWAP_CTL_GUI',
+          shortName: 'CG Unswap',
+          title: 'Unswap Ctrl and GUI',
+        },
+        {
+          name: 'Toggle Ctrl GUI',
+          code: 'MAGIC_TOGGLE_CTL_GUI',
+          shortName: 'CG Togg',
+          title: 'Toggle Ctrl and GUI swapped/unswapped',
+        },
+        {
+          name: 'Swap Alt GUI',
+          code: 'MAGIC_SWAP_ALT_GUI',
+          shortName: 'AG Swap',
+          title: 'Swap Alt and GUI',
+        },
+        {
+          name: 'Unswap Alt GUI',
+          code: 'MAGIC_UNSWAP_ALT_GUI',
+          shortName: 'AG Unswap',
+          title: 'Unswap Alt and GUI',
+        },
+        {
+          name: 'Toggle Alt GUI',
+          code: 'MAGIC_TOGGLE_ALT_GUI',
+          shortName: 'AG Togg',
+          title: 'Toggle Alt and GUI swapped/unswapped',
+        },
+        {
+          name: 'Enable GUI',
+          code: 'MAGIC_GUI_ON',
+          shortName: 'GUI On',
+          title: 'Enable GUI keys',
+        },
+        {
+          name: 'Disable GUI',
+          code: 'MAGIC_GUI_OFF',
+          shortName: 'GUI Off',
+          title: 'Disable GUI keys',
+        },
+        {
+          name: 'Toggle GUI',
+          code: 'MAGIC_TOGGLE_GUI',
+          shortName: 'GUI Togg',
+          title: 'Toggle GUI keys enabled/disabled',
+        },
+
         // I don't even think the locking stuff is enabled...
         {name: 'Locking Num Lock', code: 'KC_LNUM'},
         {name: 'Locking Caps Lock', code: 'KC_LCAP'},
         {name: 'Locking Scroll Lock', code: 'KC_LSCR'},
         {name: 'Power', code: 'KC_PWR'},
-        {name: 'Power OSX', code: 'KC_POWER'},
+        {name: 'Mac Power', code: 'KC_POWER'},
+        {
+          name: 'Control Panel',
+          title: 'Open Control Panel',
+          shortName: 'CtlPnl',
+          code: 'KC_CPNL',
+        },
+        {
+          name: 'Assistant',
+          title: 'Launch Assistant',
+          shortName: 'Asst',
+          code: 'KC_ASST',
+        },
+        {
+          name: 'Mission Control', 
+          code: 'KC_MCTL', 
+          shortName: 'Mac MCtrl',
+          title: 'MacOS Mission Control'
+        },
+        {
+          name: 'Launch Pad', 
+          code: 'KC_LPAD', 
+          shortName: 'Mac LPad',
+          title: 'MacOS Launch Pad'
+        },
         {name: 'Sleep', code: 'KC_SLEP'},
         {name: 'Wake', code: 'KC_WAKE'},
         {name: 'Calc', code: 'KC_CALC'},
@@ -946,25 +1037,42 @@ export function getKeycodes(numMacros = 16): IKeycodeMenu[] {
         {name: 'BL +', code: 'BL_INC'},
         {name: 'BL Cycle', code: 'BL_STEP'},
         {name: 'BR Toggle', code: 'BL_BRTG'},
-        {name: 'RGB Toggle', code: 'RGB_TOG'},
-        {name: 'RGB Mode -', code: 'RGB_RMOD'},
-        {name: 'RGB Mode +', code: 'RGB_MOD'},
-        {name: 'Hue -', code: 'RGB_HUD'},
-        {name: 'Hue +', code: 'RGB_HUI'},
-        {name: 'Sat -', code: 'RGB_SAD'},
-        {name: 'Sat +', code: 'RGB_SAI'},
-        {name: 'Bright -', code: 'RGB_VAD'},
-        {name: 'Bright +', code: 'RGB_VAI'},
-        {name: 'Effect Speed-', code: 'RGB_SPD'},
-        {name: 'Effect Speed+', code: 'RGB_SPI'},
-        {name: 'RGB Mode P', code: 'RGB_M_P', title: 'Plain'},
-        {name: 'RGB Mode B', code: 'RGB_M_B', title: 'Breathe'},
-        {name: 'RGB Mode R', code: 'RGB_M_R', title: 'Rainbow'},
-        {name: 'RGB Mode SW', code: 'RGB_M_SW', title: 'Swirl'},
-        {name: 'RGB Mode SN', code: 'RGB_M_SN', title: 'Snake'},
-        {name: 'RGB Mode K', code: 'RGB_M_K', title: 'Knight'},
-        {name: 'RGB Mode X', code: 'RGB_M_X', title: 'Xmas'},
-        {name: 'RGB Mode G', code: 'RGB_M_G', title: 'Gradient'},
+
+        {name: 'Toggle UG', code: 'UG_TOG'},
+        {name: 'UG Mode -', code: 'UG_RMOD'},
+        {name: 'UG Mode +', code: 'UG_MOD'},
+        {name: 'UG Hue -', code: 'UG_HUD'},
+        {name: 'UG Hue +', code: 'UG_HUI'},
+        {name: 'UG Sat -', code: 'UG_SAD'},
+        {name: 'UG Sat +', code: 'UG_SAI'},
+        {name: 'UG Bright -', code: 'UG_VAD'},
+        {name: 'UG Bright +', code: 'UG_VAI'},
+        {name: 'UG Speed -', code: 'UG_SPD'},
+        {name: 'UG Speed +', code: 'UG_SPI'},
+
+        // {name: 'UG Mode P', code: 'RGB_M_P', title: 'Plain'},
+        // {name: 'UG Mode B', code: 'RGB_M_B', title: 'Breathe'},
+        // {name: 'UG Mode R', code: 'RGB_M_R', title: 'Rainbow'},
+        // {name: 'UG Mode SW', code: 'RGB_M_SW', title: 'Swirl'},
+        // {name: 'UG Mode SN', code: 'RGB_M_SN', title: 'Snake'},
+        // {name: 'UG Mode K', code: 'RGB_M_K', title: 'Knight'},
+        // {name: 'UG Mode X', code: 'RGB_M_X', title: 'Xmas'},
+        // {name: 'UG Mode G', code: 'RGB_M_G', title: 'Gradient'},
+
+        {name: 'RM On', code: 'RM_ON'},
+        {name: 'RM Off', code: 'RM_OFF'},
+        {name: 'Toggle RM', code: 'RM_TOGG'},
+        {name: 'RM Mode +', code: 'RM_NEXT'},
+        {name: 'RM Mode -', code: 'RM_PREV'},
+        {name: 'RM Hue +', code: 'RM_HUEU'},
+        {name: 'RM Hue -', code: 'RM_HUED'},
+        {name: 'RM Sat +', code: 'RM_SATU'},
+        {name: 'RM Sat -', code: 'RM_SATD'},
+        {name: 'RM Bright +', code: 'RM_VALU'},
+        {name: 'RM Bright -', code: 'RM_VALD'},
+        {name: 'RM Speed+', code: 'RM_SPDU'},
+        {name: 'RM Speed-', code: 'RM_SPDD'},
+
       ],
     },
     /*
