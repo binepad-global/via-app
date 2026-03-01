@@ -71,8 +71,8 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
 
   const darkAccent = getDarkenedColor(theme.accent.c, 0.8);
   const colorMap = {
-    'upper-body': theme.mod.t,
-    'lower-body': theme.mod.c,
+    'upper-body': theme.mod.c,
+    'lower-body': theme.mod.t,
     accent: darkAccent,
     bowtie: darkAccent,
     pins: darkAccent,
@@ -92,7 +92,14 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
       {...props}
     >
       <style>
-        {`.st3{fill:#fdfefe}.st4{fill:${colorMap.bowtie}}.st5{fill-rule:evenodd;clip-rule:evenodd;fill:${colorMap.accent}}.st7,.st9{fill-rule:evenodd;clip-rule:evenodd}.st10,.st9{fill:#fff}`}
+        {`
+        .st3{fill:${colorMap['upper-body']}}
+        .st3b{fill:#111}
+        .st4{fill:${colorMap.bowtie}}
+        .st5{fill-rule:evenodd;clip-rule:evenodd;fill:${colorMap.accent}}
+        .st7,
+        .st9{fill-rule:evenodd;clip-rule:evenodd}.st10,
+        .st9{fill:#fff}`}
       </style>
       <g id="Layer_2_00000088814685506851870240000015950599998114990989_">
         <g id="Feet">
@@ -125,7 +132,9 @@ const SvgComponent: React.FC<any & {theme: Theme}> = (props) => {
           id="Smile"
         />
         <g id="Eyes">
-          <path d="M417.1 132.4c26.5 0 48 26.4 48 59.1s-21.4 59.1-48 59.1-48-26.4-48-59.1 21.5-59.1 48-59.1zM175.3 132.4c26.5 0 48 26.4 48 59.1s-21.4 59.1-48 59.1-48-26.4-48-59.1 21.5-59.1 48-59.1z" />
+          <path
+            className="st3b"
+            d="M417.1 132.4c26.5 0 48 26.4 48 59.1s-21.4 59.1-48 59.1-48-26.4-48-59.1 21.5-59.1 48-59.1zM175.3 132.4c26.5 0 48 26.4 48 59.1s-21.4 59.1-48 59.1-48-26.4-48-59.1 21.5-59.1 48-59.1z" />
           <path
             className="st3"
             d="M422.7 210.7c4.2 0 7.7 3.5 7.7 7.7s-3.5 7.7-7.7 7.7-7.7-3.5-7.7-7.7 3.5-7.7 7.7-7.7zM418.2 159.7c9.5 0 17.3 7.8 17.3 17.3s-7.8 17.3-17.3 17.3-17.3-7.8-17.3-17.3c-.1-9.5 7.7-17.3 17.3-17.3zM179.9 210.7c4.2 0 7.7 3.5 7.7 7.7s-3.5 7.7-7.7 7.7-7.7-3.5-7.7-7.7 3.5-7.7 7.7-7.7zM175.3 159.7c9.5 0 17.3 7.8 17.3 17.3s-7.8 17.3-17.3 17.3S158 186.5 158 177c-.1-9.5 7.8-17.3 17.3-17.3z"
