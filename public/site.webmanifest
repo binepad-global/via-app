@@ -1,7 +1,7 @@
 {
-    "name": "Keybo",
-	"short_name": "Keybo",
-	"description": "Keybo - A VIA spinoff",
+    "name": "Binepad Configurator",
+	"short_name": "binepad.app",
+	"description": "Binepad Configurator - A VIA spinoff for Binepad keyboards",
 	"start_url": ".",
     "icons": [
         {

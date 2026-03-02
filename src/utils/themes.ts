@@ -15,8 +15,8 @@ export const THEMES = {
             t: '#111111',
         },
         mod: {
-            c: '#f57f01',
-            t: '#111111',
+            c: '#5145e8',
+            t: '#f5f3ff',
         },
         accent: {
             c: '#7e7d7d',
