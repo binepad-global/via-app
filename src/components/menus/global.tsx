@@ -28,6 +28,14 @@ const showDebugPane = MODE === 'development' || DEBUG_PROD === 'true' || DEV;
 const GlobalContainer = styled(Container)`
   background: var(--bg_outside-accent);
   column-gap: 20px;
+  position: relative;
+`;
+
+const Logo = styled.img`
+  height: 32px;
+  width: auto;
+  position: absolute;
+  left: 12px;
 `;
 
 export const UnconnectedGlobalMenu = () => {
@@ -56,6 +64,7 @@ export const UnconnectedGlobalMenu = () => {
   return (
     <React.Fragment>
       <GlobalContainer>
+        <Logo src="/assets/drawing.svg" alt="Logo" />
         <ErrorLink />
         {Panes}
         <LanguageSelect />
